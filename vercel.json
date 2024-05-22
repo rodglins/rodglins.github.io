@@ -11,7 +11,7 @@
     }
   ],
   "routes": [
-    { "src": "/api/trending-topics", "dest": "/server.js" },
+    { "src": "/api/top-news", "dest": "/server.js" }, // Alterado para corresponder ao novo endpoint
     { "src": "/(.*)", "dest": "/rodglins.github.io/$1" }
   ]
 }

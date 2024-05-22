@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #1DA1F2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    background-color: #1DA1F2;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+#trending-topics {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#topics-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#topics-list li {
+    background-color: #f1f1f1;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#topics-list li:hover {
+    background-color: #ddd;
+}

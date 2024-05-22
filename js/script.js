@@ -1,23 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const topicsList = document.getElementById('topics-list');
+    const newsList = document.getElementById('news-list');
 
-    fetch('/api/trending-topics')
+    fetch('/api/top-news')
         .then(response => response.json())
         .then(data => {
             if (data.error) {
                 throw new Error(data.error);
             }
-            data.data.forEach(topic => {
+            data.articles.forEach(article => {
                 const listItem = document.createElement('li');
-                listItem.textContent = topic.text; // Ajuste conforme necessário
-                topicsList.appendChild(listItem);
+                const link = document.createElement('a');
+                link.href = article.url;
+                link.textContent = article.title;
+                listItem.appendChild(link);
+                newsList.appendChild(listItem);
             });
         })
         .catch(error => {
-            console.error('Erro ao obter os trending topics:', error);
+            console.error('Erro ao obter as principais notícias:', error);
             const errorMessage = document.createElement('li');
-            errorMessage.textContent = 'Não foi possível carregar os trending topics.';
-            topicsList.appendChild(errorMessage);
+            errorMessage.textContent = 'Não foi possível carregar as notícias.';
+            newsList.appendChild(errorMessage);
         });
 });
 

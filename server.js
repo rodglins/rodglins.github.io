@@ -7,31 +7,28 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const TWITTER_BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN;
+const GNEWS_API_KEY = process.env.GNEWS_API_KEY;
 
-// Middleware para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'rodglins.github.io')));
 
-app.get('/api/trending-topics', async (req, res) => {
+app.get('/api/top-news', async (req, res) => {
     try {
-        const response = await axios.get('https://api.twitter.com/2/tweets/search/recent', {
-            headers: {
-                'Authorization': `Bearer ${TWITTER_BEARER_TOKEN}`
-            },
+        const response = await axios.get('https://gnews.io/api/v4/top-headlines', {
             params: {
-                'query': 'trending',
-                'tweet.fields': 'context_annotations,created_at',
-                'expansions': 'author_id',
-                'max_results': 10
+                token: GNEWS_API_KEY,
+                lang: 'en',
+                country: 'US',
+                max: 10
             }
         });
         res.json(response.data);
     } catch (error) {
-        console.error('Erro ao obter os trending topics:', error);
-        res.status(500).json({ error: 'Erro ao obter os trending topics' });
+        console.error('Erro ao obter as principais notícias:', error);
+        res.status(500).json({ error: 'Erro ao obter as principais notícias' });
     }
 });
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+

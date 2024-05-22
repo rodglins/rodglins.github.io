@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const apikey = '1686e64105c7c9f1c1332439cb6cd4af';
     const category = 'general';
-    const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=us&max=10&apikey=${apikey}`;
+    const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=pt&country=br&max=10&token=${apikey}`;
 
     fetch(url)
         .then(response => response.json())
@@ -20,11 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         })
         .catch(error => {
-            console.error('Erro ao obter as principais notícias:', error);
+            console.error('Erro ao obter as últimas notícias:', error);
             const errorMessage = document.createElement('li');
             errorMessage.textContent = 'Não foi possível carregar as notícias.';
             newsList.appendChild(errorMessage);
         });
 });
+
 
 
